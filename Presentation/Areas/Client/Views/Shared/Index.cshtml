@@ -1,0 +1,186 @@
+﻿@model Presentation.Areas.Client.Models.HomeViewModels.HomeViewModel
+<main>
+    <!-- Intro -->
+    <div class="intro">
+        <div class="container">
+            <div class="intro-text">
+                <h1>Looking for a job?<br><span class="green">we will help you</span></h1>
+                <div class="check-out">
+                    @*<div class="form">
+                    <div class="job-search">
+                    <img style="width: 20px; margin-right: 30px;" src="~/Bootstrap/img/icon/search-icon.svg" alt="">
+                    <input type="text" placeholder="Type in your job search">
+                    </div>
+
+                    <input class="search main-btn" type="submit" value="Search">
+
+                    </div>*@
+                    <div class="follow">
+                        <span>Follow Us</span>
+                        <a href="https://www.facebook.com/"><img src="~/Bootstrap/img/icon/facebook-icon.svg" alt=""></a>
+                        <a href="https://twitter.com/"><img src="~/Bootstrap/img/icon/twitter-icon.svg" alt=""></a>
+                        <a href="https://www.linkedin.com/"><img src="~/Bootstrap/img/icon/linkedin-icon.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="intro-img">
+                <img src="~/Bootstrap/img/intro.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!--Search by category-->
+    <div class="container">
+        <div class="search-by">
+            <h1><span class="green">Types</span></h1>
+            <a href="">All types <img style="width: 20px; margin-left: 20px;" asp-action="Index" asp-controller="JobType">Job Types></a>
+
+            <!--Start carousel-->
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+
+                <div class="carousel-inner text-center">
+                    <div class="carousel-item active">
+                        @foreach (var jobtype in Model.JobTypes)
+                        {
+                            <div class="card-item">
+                                <div>
+                                    <p class="company-name">@jobtype.Type </p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <a class="nav-item" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"><img src="img/icon/prew-arrow.svg" alt=""></a>
+                    <a class="nav-item" role="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next"><img src="img/icon/next-arrow.svg" alt=""></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 ftco-animate fadeinup ftco-animated">
+        <form action="#" class="domain-form">
+            <div  class="form-group d-md-flex">
+                <input type="text" class="form-control px-4" placeholder="enter your job name...">
+                <input asp-area="Client" asp-action="Search" asp-controller="Home" type="submit" class="search-domain btn btn-primary px-5" value="search job">
+            </div>
+        </form>       
+    </div>
+
+
+
+
+    <!--job offers-->
+    <div class="job-offers">
+        <h1>Job <span class="green">offers</span></h1>
+        <a> All offers <img style="width: 20px; margin-left: 20px;" src="~/Bootstrap/img/icon/arrow-right-icon.svg" asp-action="Index" asp-controller="PostJob">Jobs</a>
+        <div class="row pt-5">
+            <div class="image col-md-4">
+                <img src="~/Bootstrap/img/job-offers.png" alt="">
+            </div>
+            <div class="col-md-4">
+                @foreach (var postjob in Model.PostJobs)
+                {
+
+
+                    <div class="offert-wrapper">
+                        <div class="offert">
+                            <div>
+                                <div class="offert-description">
+                                    <div class="description">
+                                        <p class="company-name">@postjob.Name</p>
+                                        <p class="description">@postjob.Description</p>
+                                    </div>
+                                </div>
+                                <div class="offert-meta">
+                                    <p class="address">Address: <span class="address">@postjob.Address</span></p>
+                                    <p class="email">Email: <span class="email">@postjob.Email</span></p>
+                                    <p class="text">Job Type: @postjob.JobTypeName</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a asp-action="Apply" asp-controller="Home" asp-route-id="@postjob.Id" class="main-btn">Apply</a>
+                    </div>
+
+                }
+            </div>
+        </div>
+
+        
+
+        <div class="update-news">
+            <div class="row">
+                <div class="col-md-5 news-text">
+                    <h2>Contact us </h2>
+                    <p>If you want to contact us write your email.</p>
+                </div>
+                <div class="col-md-7 news-form">
+                    <input  type="email" name="email" placeholder="Enter your email" id="">
+                    <a asp-action="SendEmail" asp-controller="Home" class="main-btn">Send</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="find-jobs text-center">
+            <h1><span class="green">Find jobs</span> in<br>Kosova</h1>
+        </div>
+
+    </div>
+
+</main>
+ 
+ <style>
+    .padding {
+        padding: 10rem !important;
+    }
+
+    body {
+        background-color: #f8fafe;
+    }
+
+    .domain-form .form-group {
+        border: 1px solid #9ff0c8;
+        padding: 20px;
+    }
+
+
+        .domain-form .form-group input {
+            height: 70px !important;
+            border: transparent;
+        }
+
+    .form-control {
+        height: 52px !important;
+        background: #fff !important;
+        color: #3a4348 !important;
+        font-size: 18px;
+        border-radius: 0px;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+
+    .px-4 {
+        padding-left: 1.5rem !important;
+    }
+
+    .domain-form .form-group .search-domain {
+        background: #92d35e;
+        border: 2px solid #92d35e;
+        color: #fff;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -ms-border-radius: 0;
+        border-radius: 0;
+    }
+
+    .domain-price span {
+        color: #3a4348;
+        margin: 0 10px;
+    }
+
+        .domain-price span small {
+            color: #92d35e;
+        }
+
+</style>                  

@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Client\Views\Shared\CreateAccount\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\lib\bootstrap\" />
+    <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
+    <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
+    <Folder Include="wwwroot\lib\jquery-validation\" />
+    <Folder Include="wwwroot\lib\jquery-validation\dist\" />
+    <Folder Include="wwwroot\lib\jquery\" />
+    <Folder Include="wwwroot\lib\jquery\dist\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\theme\assets\css\responsive.css.map" />
+    <None Include="wwwroot\theme\assets\css\responsive.scss" />
+    <None Include="wwwroot\theme\assets\css\rtl.css.map" />
+    <None Include="wwwroot\theme\assets\css\rtl.scss" />
+    <None Include="wwwroot\theme\assets\css\style.css.map" />
+    <None Include="wwwroot\theme\assets\css\style.scss" />
+    <None Include="wwwroot\theme\assets\fonts\._boxicons.woff2" />
+    <None Include="wwwroot\theme\assets\fonts\boxicons.woff2" />
+    <None Include="wwwroot\theme\assets\fonts\flaticon\Flaticon.woff2" />
+    <None Include="wwwroot\theme\assets\js\bootstrap.min.js" />
+    <None Include="wwwroot\theme\assets\js\contact-form-script.js" />
+    <None Include="wwwroot\theme\assets\js\counter.min.js" />
+    <None Include="wwwroot\theme\assets\js\custom.js" />
+    <None Include="wwwroot\theme\assets\js\form-validator.min.js" />
+    <None Include="wwwroot\theme\assets\js\jquery-3.5.0.min.js" />
+    <None Include="wwwroot\theme\assets\js\jquery.ajaxchimp.min.js" />
+    <None Include="wwwroot\theme\assets\js\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\theme\assets\js\jquery.nice-select.min.js" />
+    <None Include="wwwroot\theme\assets\js\meanmenu.js" />
+    <None Include="wwwroot\theme\assets\js\owl.carousel.min.js" />
+    <None Include="wwwroot\theme\assets\js\popper.min.js" />
+    <None Include="wwwroot\theme\assets\js\waypoint.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Job_Portal.App\Job_Portal.App.csproj" />
+    <ProjectReference Include="..\Job_Portal.Data\Job_Portal.Data.csproj" />
+  </ItemGroup>
+
+</Project>

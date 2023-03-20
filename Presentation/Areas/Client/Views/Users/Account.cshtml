@@ -1,0 +1,464 @@
+﻿@using Presentation.Areas.Client.Models.UsersViewModels
+@model User2ViewModels
+@{
+    var extensionsAll = "jpeg, jpg, png";
+    var extensions = extensionsAll.Split(",").Select(x => x.Trim()).ToArray();
+}
+
+<!doctype html>
+<html>
+<head>
+    <!-- required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/theme/assets/css/bootstrap.min.css">
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="~/theme/assets/css/owl.carousel.min.css">
+    <!-- owl carousel theme default css -->
+    <link rel="stylesheet" href="~/theme/assets/css/owl.theme.default.min.css">
+    <!-- box icon css-->
+    <link rel="stylesheet" href="~/theme/assets/css/boxicon.min.css">
+    <!-- flaticon css-->
+    <link rel="stylesheet" href="~/theme/assets/fonts/flaticon/flaticon.css">
+    <!-- magnific css -->
+    <link rel="stylesheet" href="~/theme/assets/css/magnific-popup.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="~/theme/assets/css/meanmenu.css">
+    <!-- nice select css -->
+    <link rel="stylesheet" href="~/theme/assets/css/nice-select.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="~/theme/assets/css/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/theme/assets/css/responsive.css">
+    <!-- title css -->
+    <title>jovie - remote hiring & online job portal html template</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="~/theme/assets/img/favicon.png">
+</head>
+
+<body>
+    <!-- account area start -->
+    <section class="account-section ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="account-information">
+                        <div class="custom-file">
+                            <div>
+                                <input asp-for="Picture" type="File" accept="image/*" class="input-sm validate-upload" />
+                            </div>
+                            <div>
+                                <input type="text" asp-for="Email" class="form-control help-sidebar" data-title="user name" data-description="enter name" placeholder="enter name...">
+
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="#" class="active">
+                                    <i class='bx bx-user'></i>
+                                    my profile
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="account-details">
+                        <h3>your information</h3>
+                        <form id="usersform" asp-action="Account" asp-controller="users" asp-area="client" method="post">
+                            <input type="hidden" asp-for="Id" />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your name</label>
+                                        <input type="text" asp-for="Name" class="form-control help-sidebar" data-title="user name" data-description="enter name" placeholder="enter name...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your surname</label>
+                                        <input type="text" asp-for="Surname" class="form-control help-sidebar" data-title="user surname" data-description="enter surname " placeholder="enter surname...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your password</label>
+                                        <input type="text" asp-for="Password" class="form-control help-sidebar" data-title="user password" data-description="enter password " placeholder="enter password...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your email</label>
+                                        <input type="text" asp-for="Email" class="form-control help-sidebar" data-title="user email" data-description="enter email " placeholder="enter email...">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your phone number</label>
+                                        <input type="text" asp-for="PhoneNumber" class="form-control help-sidebar" data-title="user phonenumber" data-description="enter phonenumber " placeholder="enter phonenumber...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your address</label>
+                                        <input type="text" asp-for="Address" class="form-control help-sidebar" data-title="job address" data-description="enter address (location of the office...)" placeholder="enter address...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your experience</label>
+                                        <input type="text" asp-for="Experience" class="form-control help-sidebar" data-title="user experience" data-description="enter experience " placeholder="enter experience...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your skills</label>
+                                        <input type="text" asp-for="Skills" class="form-control help-sidebar" data-title="user skills" data-description="enter skills " placeholder="enter skills...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your education</label>
+                                        <input type="text" asp-for="Education" class="form-control help-sidebar" data-title="user Education" data-description="enter Education " placeholder="enter Education...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your birthday</label>
+                                        <input type="text" asp-for="Birthday" class="form-control help-sidebar" data-title="user Birthday" data-description="enter birthdate " placeholder="enter Birthday...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your projects</label>
+                                        <input type="text" asp-for="Projects" class="form-control help-sidebar" data-title="user projects" data-description="enter projects " placeholder="enter projects...">
+                                    </div>
+                                </div>
+                                <h3>social links</h3>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your facebook</label>
+                                        <input type="text" asp-for="Facebook" class="form-control help-sidebar" data-title="user Facebook" data-description="enter Facebook " placeholder="enter Facebook...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your twitter</label>
+                                        <input type="text" asp-for="Twitter" class="form-control help-sidebar" data-title="user Twitter" data-description="enter Twitter " placeholder="enter Twitter...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your linkedin</label>
+                                        <input type="text" asp-for="Linkedin" class="form-control help-sidebar" data-title="user Linkedin" data-description="enter Linkedin " placeholder="enter Linkedin...">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>your github</label>
+                                        <input type="text" asp-for="GitHub" class="form-control help-sidebar" data-title="user GitHub" data-description="enter GitHub " placeholder="enter GitHub...">
+                                    </div>
+                                </div>
+
+                                <div class="editor-label">
+                                    Select CV
+                                </div>
+                                <div class="editor-field">
+                                    <input type="file" name="file" />
+                                </div>
+                                <label><small>.pdf | 3mb max</small></label>
+
+                                <div class="col-md-12">
+                                    <button type="submit" class="account-btn">edit</button>
+                                    <button type="submit" class="account-btn">save</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- account area end -->
+    <!-- back to top start -->
+    <div class="top-btn">
+        <i class='bx bx-chevrons-up bx-fade-up'></i>
+    </div>
+    <!-- back to top end -->
+    <!-- jquery first, then popper.js, then bootstrap js -->
+    <script src="~/theme/assets/js/jquery-3.5.0.min.js"></script>
+    <script src="~/theme/assets/js/popper.min.js"></script>
+    <script src="~/theme/assets/js/bootstrap.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="~/theme/assets/js/owl.carousel.min.js"></script>
+    <!-- nice select js -->
+    <script src="~/theme/assets/js/jquery.nice-select.min.js"></script>
+    <!-- magnific popup js -->
+    <script src="~/theme/assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- subscriber form js -->
+    <script src="~/theme/assets/js/jquery.ajaxchimp.min.js"></script>
+    <!-- form velidation js -->
+    <script src="~/theme/assets/js/form-validator.min.js"></script>
+    <!-- contact form -->
+    <script src="~/theme/assets/js/contact-form-script.js"></script>
+    <!-- meanmenu js -->
+    <script src="~/theme/assets/js/meanmenu.js"></script>
+    <!-- custom js -->
+    <script src="~/theme/assets/js/custom.js"></script>
+
+</body>
+</html>
+
+@section scripts{
+    <!-- jquery-validation -->
+    <script src="~/theme/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/theme/plugins/jquery-validation/additional-methods.min.js"></script>
+    <script src="~/theme/plugins/fileinput/js/fileinput.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            if (localstorage.ishelpvisible == 'true') {
+                close();
+            }
+            else {
+                open();
+            }
+
+            $(window).scroll(function () {
+                $("#right-sidebar").css("margin-top", math.max(0, $(this).scrolltop() - 112));
+            });
+                   var maxUpload = 3000;
+            var uploadExtensions = @Html.Raw(Json.Serialize(extensions));
+
+            $('#usersform').validate({
+                rules: {
+                    Name: {
+                        required: true,
+                        minlength: 3,
+                    },
+                    Surname: {
+                        required: true,
+                        minlength: 3,
+                    },
+                    Email: {
+                        required: true,
+                        email: true,
+                    },
+                    Password: {
+                        required: '@(Model.Id != "")' === '@true',
+                        minlength: 8,
+                        regex: "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@@$%^&*-]).{8,}$"
+                    },
+                    Address: {
+                        required: true,
+                    },
+                    Experience: {
+                        required: true,
+                    },
+                    Education: {
+                        required: true,
+                    },
+                    Skills: {
+                        required: true,
+                    },
+                    Projects: {
+                        required: true,
+                    },
+                    PhoneNumber: {
+                        required: true,
+                    },
+                    Birthday: {
+                        required: true,
+                    },
+                       Facebook: {
+                        required: true,
+                    },
+                       Twitter: {
+                        required: true,
+                    },
+                       Linkedin: {
+                        required: true,
+                    },
+                       GitHub: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    Name: {
+                        required: "sharedlocalizer('fieldrequired')",
+                        minlength: "sharedlocalizer('minlength3')"
+                    },
+                    Surname: {
+                        required: "sharedlocalizer('fieldrequired')",
+                        minlength: "sharedlocalizer('minlength3')"
+                    },
+                    Email: {
+                        required: "sharedlocalizer('fieldrequired')",
+                        email: "sharedlocalizer('emailinvalidformat')",
+                    },
+                    Password: {
+                        required: "SharedLocalizer('FieldRequired')",
+                        minlength: "SharedLocalizer('MinLength8')",
+                        regex: "SharedLocalizer('PasswordInvalidFormat')"
+                    },
+                    Address: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                    Experience: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                    Education: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                    Skills: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                    Projects: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                    PhoneNumber: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                    Birthday: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                    Facebook: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                    Twitter: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                    Linkedin: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                    GitHub: {
+                        required: "sharedlocalizer('fieldrequired')",
+                    },
+                },
+                errorelement: 'span',
+                errorplacement: function (error, element) {
+                    error.addclass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorclass, validclass) {
+                    $(element).addclass('is-invalid');
+                },
+                unhighlight: function (element, errorclass, validclass) {
+                    $(element).removeclass('is-invalid');
+                },
+                submithandler: function (form) {
+                    form.submit();
+                }
+            });
+
+            if ('@Model.Id' == '0') {
+                $("#Picture").fileinput({
+                    theme: "fa",
+                    showZoom: false,
+                    browseOnZoneClick: true,
+                    resizeImage: true,
+                    resizeImageQuality: 0.3,
+                    showRemove: true,
+                    showUpload: false,
+                    showBrowse: true,
+                    showCancel: false,
+                    dropZoneEnabled: false,
+                    maxFileSize: maxUpload,
+                    allowedFileExtensions: uploadExtensions,
+                    initialPreviewAsData: true,
+                    fileActionSettings: {
+                        showRemove: true,
+                    }
+                });
+            }
+            else {
+                var previewImageThumbnail = [];
+                var initialPreviewConfigThumbnail = [];
+        @if (Model.UserPicture != null)
+        {
+            @:previewImageThumbnail.push('@Url.Content(Model.UserPicture.Path)');
+            @:initialPreviewConfigThumbnail.push({ caption: "@Model.UserPicture.FileName", size: 762980, url: "@Url.Action("DeleteImage", new { id = Model.UserPicture.Id })", key: @Model.UserPicture.Id});
+        }
+                    $("#Picture").fileinput({
+                        overwriteInitial: true,//server upload action
+                        theme: "fa",
+                        overwriteInitial: true,
+                        showZoom: false,
+                        browseOnZoneClick: true,
+                        resizeImage: true,
+                        maxFileSize: maxUpload,
+                        allowedFileExtensions: uploadExtensions,
+                        resizeImageQuality: 0.3,
+                        showRemove: true,
+                        showUpload: false,
+                        showBrowse: true,
+                        showCancel: false,
+                        dropZoneEnabled: false,
+                        initialPreview: previewImageThumbnail,
+                        initialPreviewAsData: true,
+                        initialPreviewConfig: initialPreviewConfigThumbnail,
+                        fileActionSettings: {
+                            showRemove: true,
+                        },
+                    });
+            }
+
+            $('#Picture').on('fileclear', function (event) {
+                $('#IsPictureDeleted').val("True");
+            });
+
+            $(".help-sidebar").click(function () {
+                var event = $(this);
+                var title = $(this).attr("data-title");
+                var description = $(this).attr("data-description");
+                helpsidebar(title, description);
+            });
+
+            //function that fill help right side bar
+            function helpsidebar(title, description) {
+                //debugger;
+                $("#title").text(title);
+                $("#description").text(description);
+            }
+
+            $("#close").click(function () {
+                if ($("#right-sidebar").is(':visible')) {
+                    open();
+                }
+                else {
+                    close();
+                }
+            });
+
+            function open() {
+
+                var option = { direction: 'right' };
+                $("#right-sidebar").hide();
+                $("#left-side-bar").removeclass("col-md-9");
+                $("#left-side-bar").addclass("col-md-12");
+
+                $("#icon-expand").removeclass("fa-chevron-right");
+                $("#icon-expand").addclass("fa-chevron-left");
+
+
+                localstorage.ishelpvisible = false;
+            }
+            function close() {
+                //debugger;
+                $("#left-side-bar").removeclass("col-md-12");
+                $("#left-side-bar").addclass("col-md-9");
+                var option = { direction: 'right' };
+                $("#right-sidebar").show();
+                $("#icon-expand").removeclass("fa-chevron-left");
+                $("#icon-expand").addclass("fa-chevron-right");
+
+                localstorage.ishelpvisible = true;
+            }
+        })
+    </script>
+}

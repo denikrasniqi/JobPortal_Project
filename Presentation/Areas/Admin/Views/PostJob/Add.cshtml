@@ -1,0 +1,257 @@
+﻿@using Presentation.Areas.Admin.Models.PostJobViewModels  
+@model PostJobViewModels
+
+@{
+    string cssClass = (Model.Id == 0) ? "primary" : "warning";
+    string cardTitle = (Model.Id == 0) ? "Add" : "Edit";
+    string cardTitleDescription = (Model.Id == 0) ? "Add new job" : "Edit current job";
+}
+
+@section Styles{
+
+}
+
+<!-- Content Header (Page header) -->
+
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>@cardTitle</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">PostJob</a></li>
+          @if((Model.Id == 0)){
+          <li class="breadcrumb-item active">Add</li>
+          }
+          else{
+              <li class="breadcrumb-item"><a href="#">Edit</a></li>
+          <li class="breadcrumb-item active">@Model.Id</li>
+          }
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col--d-9" id="left-side-bar">
+            <div class="card card-@cssClass">
+              <div class="card-header">
+                        <h3 class="card-title">@SharedLocalizer["AddNewJob"]</h3>
+                        <span id="close" style="float:right" class="hidden-sm hidden-xs">
+                            <span id="expand">@SharedLocalizer["CloseHelp"]</span>
+                            <i class="fa fa-chevron-right" id="icon-expand" aria-hidden="true"></i>
+                 </span>
+              </div>
+              <!-- /.card-header -->
+              <form id="JobsForm" asp-action="Add" asp-controller="PostJob" asp-area="Admin" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="card-body">
+                    
+                      <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                        <label>@SharedLocalizer["Name"]</label>
+                                <div class="input-group">
+                                            <input type="text" asp-for="Name" class="form-control help-sidebar" data-title="Job Name" data-description="Enter job name..." placeholder="Enter name...">
+                                    <div class="input-group-append ">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                                        <label>@SharedLocalizer["Address"]</label>
+                                        <input type="text" asp-for="Address" class="form-control help-sidebar" data-title="Job Address" data-description="Enter address (location of the office...)" placeholder="Enter address...">
+                          </div>
+                        </div>
+                    </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                                        <label>@SharedLocalizer["Email"]</label>
+                                        <input type="text" asp-for="Email" class="form-control help-sidebar" data-title="Job Email" data-description="Enter email, Email ex: example@gmail.com" placeholder="Enter email...">
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label>@SharedLocalizer["Description"]</label>
+                                        <input type="text" asp-for="Description" class="form-control help-sidebar" data-title="Job Description" data-description="Enter the job description" placeholder="Enter description...">
+                          </div>
+                        </div>                   
+                    </div>                    
+                </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label>@SharedLocalizer["SelectType"]</label>
+                                    <select asp-for="JobTypeId" asp-items="@Model.JobType" class="form-control">
+                                        <option value="">- Select type -</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                <!-- /.card-body -->
+
+                <!-- /.card-footer -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-@cssClass">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+            <div class="col-md-3 navbar-right hidden-sm hidden-xs help-bar remove-left-padding" id="right-sidebar">
+                <div class="card @((Model.Id==0) ? "card-primary" : "card-warning")">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fa fa-info"></i><span style="margin-left:15px" id="title">@SharedLocalizer["QuickHelp"]</span></h3>
+                    </div>
+                    <div class="card-body">
+                        <p id="description">
+                            @((Model.Id == 0) ? "Job Add Form" : "Job  Edit Form")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+@section Scripts{
+    <!-- jquery-validation -->
+    <script src="~/theme/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/theme/plugins/jquery-validation/additional-methods.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            if (localStorage.isHelpVisible == 'true') {
+                Close();
+            }
+            else {
+                Open();
+            }
+
+            $(window).scroll(function () {
+                $("#right-sidebar").css("margin-top", Math.max(0, $(this).scrollTop() - 112));
+            });
+
+            $('#JobsForm').validate({
+                rules: {
+                    Name: {
+                        required: true,
+                        minlength: 3,
+                    },
+                    Address: {
+                        required: true,
+                        minlength: 3,
+                    },
+                    Email: {
+                        required: true,
+                        email: true,
+                    },
+                    Description: {
+                        required: true,
+                    },
+                     JobTypeId:{
+                        required: true,
+                    }
+                },
+                messages: {
+                    Name: {
+                        required: "SharedLocalizer('FieldRequired')",
+                        minlength: "SharedLocalizer('MinLength3')"
+                    },
+                    Address: {
+                        required: "SharedLocalizer('FieldRequired')",
+                        minlength: "SharedLocalizer('MinLength3')"
+                    },
+                    Email: {
+                        required: "SharedLocalizer('FieldRequired')",
+                        email: "SharedLocalizer('EmailInvalidFormat')",
+                    },
+                    Description: {
+                        required: "SharedLocalizer('FieldRequired')",
+                    },
+                    JobTypeId: {
+                        required: "SharedLocalizer('FieldRequired')",
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+
+            $(".help-sidebar").click(function () {
+                var event = $(this);
+                var title = $(this).attr("data-title");
+                var description = $(this).attr("data-description");
+                HelpSideBar(title, description);
+            });
+
+            //Function that fill help right side bar
+            function HelpSideBar(title, description) {
+                //debugger;
+                $("#title").text(title);
+                $("#description").text(description);
+            }
+
+            $("#close").click(function () {
+                if ($("#right-sidebar").is(':visible')) {
+                    Open();
+                }
+                else {
+                    Close();
+                }
+            });
+
+            function Open() {
+
+                var option = { direction: 'right' };
+                $("#right-sidebar").hide();
+                $("#left-side-bar").removeClass("col-md-9");
+                $("#left-side-bar").addClass("col-md-12");
+
+                $("#icon-expand").removeClass("fa-chevron-right");
+                $("#icon-expand").addClass("fa-chevron-left");
+                $("#expand").html("@SharedLocalizer["OpenHelp"]");
+
+                localStorage.isHelpVisible = false;
+            }
+            function Close() {
+                //debugger;
+                $("#left-side-bar").removeClass("col-md-12");
+                $("#left-side-bar").addClass("col-md-9");
+                var option = { direction: 'right' };
+                $("#right-sidebar").show();
+                $("#icon-expand").removeClass("fa-chevron-left");
+                $("#icon-expand").addClass("fa-chevron-right");
+                $("#expand").html("@SharedLocalizer["CloseHelp"]");
+
+                localStorage.isHelpVisible = true;
+            }
+        })
+    </script>
+}

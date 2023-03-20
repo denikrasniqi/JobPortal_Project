@@ -1,0 +1,210 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@using Job_Portal.App.Interfaces
+@using Job_Portal.App.Constants
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+}
+@inject IUserService userService
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Firmbee.com - Free Project Management Platform for remote teams">
+    <meta name="author" content="Firmbee.com - Free Project Management Platform for remote teams">
+    <title>Job Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0e035b9984.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0e035b9984.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/Bootstrap/css/main.css">
+    <!-- flag-icon-css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
+
+</head>
+<body>
+    <header>
+        <nav style="position:static" class="navbar navbar-expand-xl fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img claass="w-100" src="~/Bootstrap/img/icon/APDP.png" alt=""></a>
+                @* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+                </button>*@
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-card-item">
+                            <a class="nav-link  active" asp-action="Index" asp-controller="Home">Home</a>
+                        </li>
+                        <li class="nav-card-item">
+                            <a class="nav-link" asp-action="Aboutus" asp-controller="Home">About</a>
+                        </li>
+                        <li class="nav-card-item">
+                            <a class="nav-link" asp-action="SendEmail" asp-controller="Home">Contact Us</a>
+                        </li>
+                        
+                        @if (!SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-card-item-right">
+                                <a class="nav-link" asp-action="Login" asp-controller="Account">Sign in</a>
+                            </li>
+                            <li class="nav-card-item-right create-account">
+                                <a class="nav-link" asp-action="Account" asp-controller="Users">Create account</a>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="nav-card-item-right create-account">
+                                <a class="nav-link" asp-action="Account" asp-controller="Users" asp-route-id="@userService.GetUserId()">Account</a>
+                            </li>
+                           
+                            <li class="nav-card-item-right">
+                                <form asp-area="Client" asp-action="Logout" asp-controller="Account">
+                                    &nbsp; &nbsp; &nbsp;
+                                    <button style="background-color:#92d35e; color:white;" type="submit" class="nav-link">Sign out</button>
+                                </form>
+                            </li>
+                        }
+                       @* <li class="nav-item dropdown">
+                            @if (culture == LanguageConstants.AlbanianKey)
+                            {
+                                <a class="nav-link" data-toggle="dropdown" href="#">
+                                    <i class="flag-icon flag-icon-al"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right p-0">
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="SetLanguage"
+                                   name="culture" asp-route-culture="@LanguageConstants.AlbanianKey" class="dropdown-item active">
+                                        <i class="flag-icon flag-icon-al mr-2"></i> @SharedLocalizer["Albanian"]
+                                    </a>
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="SetLanguage"
+                                   name="culture" asp-route-culture="@LanguageConstants.EnglishKey" class="dropdown-item">
+                                        <i class="flag-icon flag-icon-us mr-2"></i> @SharedLocalizer["English"]
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <a class="nav-link" data-toggle="dropdown" href="#">
+                                    <i class="flag-icon flag-icon-us"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right p-0">
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="SetLanguage" value="@LanguageConstants.EnglishKey"
+                                   name="culture" asp-route-culture="@LanguageConstants.EnglishKey" class="dropdown-item active">
+                                        <i class="flag-icon flag-icon-us mr-2"></i> @SharedLocalizer["English"]
+                                    </a>
+                                    <a asp-area="Admin" asp-controller="Home" asp-action="SetLanguage" value="@LanguageConstants.AlbanianKey"
+                                   name="culture" asp-route-culture="@LanguageConstants.AlbanianKey" class="dropdown-item">
+                                        <i class="flag-icon flag-icon-al mr-2"></i> @SharedLocalizer["Albanian"]
+                                    </a>
+                                </div>
+                            }
+*@
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        @* <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+        @* <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AspNetCoreMvcIdentity</a>*@
+        @* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <partial name="_LoginPartial" />*@
+        @*<ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"></a>
+        </li>*@
+        @* <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        @*   </li>
+        </ul>
+        </div>
+        </div>
+        </nav>*@
+    </header>
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        @*class="border-top footer text-muted"
+        <div class="container">
+        &copy; 2018 - AspNetCoreRazorPageIdentity - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>*@
+        <div class="container text-center text-md-start">
+            <div class="footer-wrap">
+                <div class="about">
+                    <img src="img/icon/jobportallogo.png" alt="">
+                    <p class="text-muted py-4">
+                        Start working with Firmbee which can provide you with all the tools needed to run an effcieint business remotely.
+                    </p>
+                    <div class="social-media">
+                        <a href="" class="me-2 text-reset"><img src="~/Bootstrap/img/icon/facebook-icon.svg" alt=""></a>
+                        <a href="" class="me-2 text-reset"><img src="~/Bootstrap/img/icon/twitter-icon.svg" alt=""></a>
+                        <a href="" class="me-2 text-reset"><img src="~/Bootstrap/img/icon/linkedin-icon.svg" alt=""></a>
+                        <a href="" class="me-2 text-reset"><img src="~/Bootstrap/img/icon/instagram-icon.svg" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="company">
+                    <h6 class="fw-bold">Company</h6>
+                    <p><a asp-action="Aboutus" asp-controller="Home">About us</a></p>
+                    <p><a href="">Services</a></p>
+                    <p><a asp-action="Aboutus" asp-controller="Home">Team</a></p>
+                    <p><a href="">Pricing</a></p>
+                    <p><a href="">Project</a></p>
+                    <p><a href="">Careers</a></p>
+                    <p><a href="">Blog</a></p>
+                    <p><a asp-action="Login" asp-controller="Account">Login</a></p>
+                </div>
+
+                <div class="useful-links">
+                    <h6 class="fw-bold">Useful links</h6>
+                    <p><a href="">Terms of </a></p>
+                    <p><a href="">Services</a></p>
+                    <p><a href="">Privacy Policy</a></p>
+                    <p><a href="">Documentation</a></p>
+                    <p><a href="">Changelog</a></p>
+                    <p><a href="">Components</a></p>
+                </div>
+
+                <div class="newsletter">
+                    <h6 class="fw-bold">Newsletter</h6>
+                    <p class="text-muted">
+                        Sign up and receive the latest tips
+                        via email.
+                    </p>
+                    <form id="subscribe" action="">
+                        <label for="email">Youre e-mail:</label>
+                        <input type="email" placeholder="e-mail:" name="email" required>
+                        <button type="submit" class="main-btn">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+            
+        </div>
+
+
+    </footer>
+
+    <script src="js/nav-bg.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

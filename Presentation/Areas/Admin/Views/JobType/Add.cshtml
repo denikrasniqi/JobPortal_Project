@@ -1,0 +1,195 @@
+﻿@using Presentation.Areas.Admin.Models.JobTypeViewModels  
+@model JobTypeViewModels
+
+@{
+    string cssClass = (Model.Id == 0) ? "primary" : "warning";
+    string cardTitle = (Model.Id == 0) ? "Add" : "Edit";
+    string cardTitleDescription = (Model.Id == 0) ? "Add new Job Type" : "Edit current Job Type";
+}
+
+@section Styles{
+
+}
+
+<!-- Content Header (Page header) -->
+
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>@cardTitle</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">JobType</a></li>
+          @if((Model.Id == 0)){
+          <li class="breadcrumb-item active">Add</li>
+          }
+          else{
+              <li class="breadcrumb-item"><a href="#">Edit</a></li>
+          <li class="breadcrumb-item active">@Model.Id</li>
+          }
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+           <div class="col--d-9" id="left-side-bar">
+            <div class="card card-@cssClass">
+              <div class="card-header">
+                        <h3 class="card-title">@SharedLocalizer["AddNewType"]</h3>
+                        <span id="close" style="float:right" class="hidden-sm hidden-xs">
+                            <span id="expand">@SharedLocalizer["CloseHelp"]</span>
+                            <i class="fa fa-chevron-right" id="icon-expand" aria-hidden="true"></i>
+                        </span>
+              </div>
+              <!-- /.card-header -->
+                    <form id="JobTypesForm" asp-action="Add" asp-controller="JobType" asp-area="Admin" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <div class="card-body">
+                    
+                      <div class="row">
+                                <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>@SharedLocalizer["Type"]</label>
+                                <div class="input-group">
+                                            <input type="text" asp-for="Type" class="form-control help-sidebar" data-title="Type Name" data-description="Enter the type of jobs (c#, python...)" placeholder="Enter Type...">
+                                    <div class="input-group-append ">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                <!-- /.card-body -->
+
+                <!-- /.card-footer -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-@cssClass">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+
+            <!-- /.col -->
+            <div class="col-md-3 navbar-right hidden-sm hidden-xs help-bar remove-left-padding" id="right-sidebar">
+                <div class="card @((Model.Id==0) ? "card-primary" : "card-warning")">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fa fa-info"></i><span style="margin-left:15px" id="title">@SharedLocalizer["QuickHelp"]</span></h3>
+                    </div>
+                    <div class="card-body">
+                        <p id="description">
+                            @((Model.Id == 0) ? "Add Job Type Form" : "Edit Job Type Form")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+
+@section Scripts{
+    <!-- jquery-validation -->
+    <script src="~/theme/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/theme/plugins/jquery-validation/additional-methods.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            if (localStorage.isHelpVisible == 'true') {
+                Close();
+            }
+            else {
+                Open();
+            }
+
+            $(window).scroll(function () {
+                $("#right-sidebar").css("margin-top", Math.max(0, $(this).scrollTop() - 112));
+            });
+
+            $('#JobTypesForm').validate({
+                rules: {
+                    Type: {
+                        required: true,                       
+                    },
+                },
+                messages: {
+                    Type: {
+                        required: "SharedLocalizer('FieldRequired')",                       
+                    },                   
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+            $(".help-sidebar").click(function () {
+                var event = $(this);
+                var title = $(this).attr("data-title");
+                var description = $(this).attr("data-description");
+                HelpSideBar(title, description);
+            });
+
+            //Function that fill help right side bar
+            function HelpSideBar(title, description) {
+                //debugger;
+                $("#title").text(title);
+                $("#description").text(description);
+            }
+
+            $("#close").click(function () {
+                if ($("#right-sidebar").is(':visible')) {
+                    Open();
+                }
+                else {
+                    Close();
+                }
+            });
+
+            function Open() {
+
+                var option = { direction: 'right' };
+                $("#right-sidebar").hide();
+                $("#left-side-bar").removeClass("col-md-9");
+                $("#left-side-bar").addClass("col-md-12");
+
+                $("#icon-expand").removeClass("fa-chevron-right");
+                $("#icon-expand").addClass("fa-chevron-left");
+                $("#expand").html("@SharedLocalizer["OpenHelp"]");
+
+                localStorage.isHelpVisible = false;
+            }
+            function Close() {
+                //debugger;
+                $("#left-side-bar").removeClass("col-md-12");
+                $("#left-side-bar").addClass("col-md-9");
+                var option = { direction: 'right' };
+                $("#right-sidebar").show();
+                $("#icon-expand").removeClass("fa-chevron-left");
+                $("#icon-expand").addClass("fa-chevron-right");
+                $("#expand").html("@SharedLocalizer["CloseHelp"]");
+
+                localStorage.isHelpVisible = true;
+            }
+        })
+    </script>
+}

@@ -1,0 +1,75 @@
+﻿@using Presentation.Areas.Client.Models.MailModel
+@model MailModel
+@{
+    ViewBag.Title = "SendMail";
+}
+<h2>SendMail</h2>
+<fieldset>
+    <legend>
+        Send Email
+    </legend>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+       @* <p>From: </p>
+        <p>@Html.TextBoxFor(m=>m.From)</p>
+        <p>To: </p>
+        <p>@Html.TextBoxFor(m=>m.To)</p>
+        <p>Subject: </p>
+        <p>@Html.TextBoxFor(m=>m.Subject)</p>
+        <p>Body: </p>
+        <p>@Html.TextAreaFor(m=>m.Body)</p>
+        <input type="submit" value="Send" />*@
+        <div>
+            <form action="/action_page.php">
+                <label for="fname">From:</label>
+                <input type="text" asp-for="From" class="form-control help-sidebar" data-title="From" data-description="Enter sender's email" placeholder="Enter sender's email">
+
+                <label for="lname">To:</label>
+                <input type="text" asp-for="To" class="form-control help-sidebar" data-title="To" data-description="Enter receiver's email" placeholder="Enter receiver's email">
+
+                <label for="lname">Subject:</label>
+                <input type="text" asp-for="Subject" class="form-control help-sidebar" data-title="subject" data-description="Enter the subject" placeholder="Enter the subject">
+
+                <label for="lname">Body:</label>
+                <input type="text" asp-for="Body" class="form-control help-sidebar" data-title="body" data-description="Compose email" placeholder="Compose email">
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+    }
+</fieldset> 
+
+<style>
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=submit] {
+        width: 100%;
+        background-color: #92d35e;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #92d35e;
+        }
+
+    div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+</style>
