@@ -8,3 +8,7 @@ Adding different Jobs,and categories .
 ![image](https://user-images.githubusercontent.com/34380779/226344574-72a4b169-30ed-4f07-8c31-36a0b406ea05.png)
 ![image](https://user-images.githubusercontent.com/34380779/226344622-1f16cae6-7ecf-417b-86e9-d336d64a4897.png)
 
+This Website uses a 5 Layer Architecture Compromised of these layers:
+App layer , Data layer , Models layer , Utilities layer and Presentation layer.
+![image](https://user-images.githubusercontent.com/34380779/226345014-6e15bf81-388d-4bf3-af67-e7170ab540c3.png)
+
