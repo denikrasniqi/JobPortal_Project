@@ -1,4 +1,4 @@
-# JobPortal_Project
+# JobPortal_Project ASP.NET
 A Website created to manage job hunting and simplify it.
 The Website allows for :
 Creating new users , assigning them roles such as Admin or Client.
