@@ -6,8 +6,10 @@ Adding different Jobs,and categories .
 ![image](https://github.com/denikrasniqi/JobPortal_Project/assets/34380779/8f4173b8-947a-42e2-bf4d-a620f2b4112f)
 ![image](https://github.com/denikrasniqi/JobPortal_Project/assets/34380779/f9f422e1-92ca-41c5-9dc8-415472be8fed)
 
-![image](https://user-images.githubusercontent.com/34380779/226344509-acddc00f-f8c4-4f8e-a998-dcb8f855d627.png)
-![image](https://user-images.githubusercontent.com/34380779/226344574-72a4b169-30ed-4f07-8c31-36a0b406ea05.png)
+![image](https://github.com/denikrasniqi/JobPortal_Project/assets/34380779/8db7dfca-9f2c-4d5c-838a-8a1e206bebe6)
+
+![image](https://github.com/denikrasniqi/JobPortal_Project/assets/34380779/489dcaba-f6f3-40a8-a7a5-8c4500d3ad3c)
+![image](https://github.com/denikrasniqi/JobPortal_Project/assets/34380779/27854ef0-7217-42eb-93b8-f10497cb7021)
 ![image](https://user-images.githubusercontent.com/34380779/226344622-1f16cae6-7ecf-417b-86e9-d336d64a4897.png)
 
 This Website uses a 5 Layer Architecture Compromised of these layers:
